@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revision Arcade</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div id="global-score-display">Revision Points: 0</div>
+
+    <div id="hub-screen" class="fade-in">
+        <div class="hub-header">
+            <h1>MQGNITUDE'S REVISION ARCADE</h1>
+            <p>Pick a game | Revise topics | Play games</p>
+        </div>
+
+        <div class="hub-container">
+            <div class="hub-section">
+                <label>1. REVISION MATERIAL (INPUT)</label>
+                <textarea id="revision-input"
+                    placeholder="Paste your definitions, thesis statements, or Q&A here..."></textarea>
+
+                <div class="preset-controls" style="margin-top: 10px; display: flex; gap: 10px;">
+                    <select id="preset-select"
+                        style="flex-grow: 1; padding: 8px; background: #000; color: #aaa; border: 1px solid #444; border-radius: 4px;">
+                        <option value="" disabled selected>-- Or Select a Premade Subject Pack--</option>
+                        <option value="eng_macbeth">English Lit: Macbeth</option>
+                        <option value="eng_aic">English Lit: An Inspector Calls</option>
+                        <option value="eng_jekyll">English Lit: A Christmas Carol</option>
+                        <option value="chem_c1">Chemistry: C1 </option>
+                        <option value="chem_c2">Chemistry: C2 (complete)</option>
+                        <option value="bio_b1">Biology: B1 </option>
+                        <option value="phys_p1">Physics: P1</option>
+                        <option value="geo_hazards">Geography: Tectonic Hazards</option>
+                        <option value="hist_germany">History: Weimar & Nazi Germany</option>
+                        <option value="cs_algo">Comp Sci: Algorithms (complete)</option>
+                    </select>
+                    <button class="hud-btn"
+                        style="background: var(--accent-blue); color: black; border: none; font-weight: bold;"
+                        onclick="Main.loadPreset()">LOAD</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="hub-section">
+            <label>2. SELECT GAME</label>
+            <div class="game-grid">
+                <button id="card-glitch" class="game-card selected" onclick="Main.selectMode('glitch')">
+                    <h3>GLITCH TEXT</h3>
+                    <p>Reconstruct corrupted text.</p>
+                    <span class="tag">ESSAY / TEXT</span>
+                </button>
+
+                <button id="card-stim" class="game-card" onclick="Main.selectMode('stim')">
+                    <h3>DOPAMINE MINE</h3>
+                    <p>Type to make videos play.</p>
+                    <span class="tag">Q&A / DEFINITIONS</span>
+                </button>
+
+                <button id="card-patch" class="game-card" onclick="Main.selectMode('patch')">
+                    <h3>BOX CONNECT</h3>
+                    <p>Connect terms, MOBILE FRIENDLY</p>
+                    <span class="tag">MATCHING / MOBILE</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="hub-section" id="visual-selector" style="display:none; margin-top: 15px;">
+            <label>3. BACKGROUND VIDEO</label>
+            <select id="bg-select">
+                <option value="tunnel">Neon spiral</option>
+                <option value="subway">Subway Surfers</option>
+                <option value="press">Hydraulic Press</option>
+                <option value="minecraft">Minecraft Parkour</option>
+            </select>
+        </div>
+
+        <button class="start-btn" onclick="Main.initSession()">START</button>
+    </div>
+    </div>
+
+    <div id="game-container" class="hidden">
+
+        <div class="hud-top">
+            <button class="hud-btn" onclick="Main.returnToHub()">BACK TO MENU</button>
+            <div id="level-indicator">COMPLETED 1 / 1</div>
+        </div>
+
+        <div id="game-glitch" class="game-layer hidden">
+            <div class="crt-scanline"></div>
+            <div id="glitch-prompt">SYSTEM ANALYZING...</div>
+            <div id="glitch-display"></div>
+            <div class="hint-bar">HOLD [CTRL] TO DECRYPT TEXT</div>
+        </div>
+
+        <div id="game-stim" class="game-layer hidden">
+            <video id="bg-video" loop muted playsinline class="video-dimmed"></video>
+            <canvas id="tunnel-canvas"></canvas>
+            <div class="stim-ui-layer">
+                <div class="stim-question-box">
+                    <div id="stim-question">TARGET LOCKED</div>
+                </div>
+                <div class="stim-input-box">
+                    <div id="stim-display">Waiting for input...</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="game-patch" class="game-layer hidden">
+            <div class="patch-board">
+                <svg id="patch-cables"></svg>
+                <div class="column left" id="patch-col-left"></div>
+                <div class="column right" id="patch-col-right"></div>
+            </div>
+            <div class="patch-instructions">DRAG TO CONNECT</div>
+        </div>
+
+    </div>
+
+    <script src="js/audio.js"></script>
+    <script src="js/games/glitch.js"></script>
+    <script src="js/games/stim.js"></script>
+    <script src="js/games/patch.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
