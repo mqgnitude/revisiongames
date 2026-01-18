@@ -22,7 +22,9 @@ body {
     color: var(--text-primary);
     font-family: var(--font-ui);
     height: 100vh;
+    width: 100vw;
     overflow: hidden;
+    /* Prevents body scroll */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,6 +45,8 @@ body {
     border-radius: 20px;
     z-index: 2000;
     box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+    pointer-events: none;
+    /* Lets you click through it if needed */
 }
 
 /* --- UTILITIES --- */
@@ -89,12 +93,10 @@ button {
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
     overflow-y: auto;
     scrollbar-width: none;
-    /* Firefox */
 }
 
 .hub-container::-webkit-scrollbar {
     display: none;
-    /* Chrome/Safari */
 }
 
 .hub-section {
@@ -177,7 +179,8 @@ textarea:focus {
 }
 
 /* VISUAL SELECTOR DROPDOWN */
-#bg-select {
+#bg-select,
+#preset-select {
     width: 100%;
     padding: 8px;
     background: #000;
@@ -211,7 +214,7 @@ textarea:focus {
     background: black;
 }
 
-/* HUD Elements (Grid Layout to fix overlap) */
+/* HUD Elements */
 .hud-top {
     position: absolute;
     top: 0;
@@ -381,6 +384,10 @@ textarea:focus {
     background: #111;
     background-image: radial-gradient(#222 1px, transparent 1px);
     background-size: 20px 20px;
+
+    /* FIX: Prevents the whole page from scrolling when you drag wires on mobile */
+    touch-action: none;
+    overflow: hidden;
 }
 
 .patch-board {
@@ -427,6 +434,9 @@ textarea:focus {
     cursor: pointer;
     transition: 0.2s;
     user-select: none;
+
+    /* Ensure touches register on the node, not the screen scroll */
+    touch-action: none;
 }
 
 .patch-node:hover {
@@ -513,20 +523,25 @@ textarea:focus {
     }
 }
 
-/* --- MOBILE SUPPORT --- */
+/* --- MOBILE / TABLET SUPPORT --- */
 @media (max-width: 768px) {
+
+    /* 1. Stack Game Selection vertically */
     .game-grid {
         grid-template-columns: 1fr;
     }
 
+    /* 2. Smaller Headers */
     .hub-header h1 {
         font-size: 2rem;
     }
 
+    /* 3. Hide Video on mobile (Save Data) */
     #bg-video {
         display: none !important;
     }
 
+    /* 4. Adjust Game Fonts */
     #glitch-display {
         font-size: 1.2rem;
         padding: 20px;
@@ -540,18 +555,34 @@ textarea:focus {
         font-size: 1rem;
     }
 
+    /* 5. FIX RP COUNTER: Make it tiny and move it out of the way */
+    #global-score-display {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+        top: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.5);
+        /* More transparent */
+        border: 1px solid rgba(0, 255, 65, 0.3);
+    }
+
+    /* 6. FIX PATCH BAY: Prevent scrolling & adjust sizing */
     .patch-board {
         width: 100%;
-        padding: 10px;
+        padding: 5px;
+        height: 75vh;
     }
 
     .patch-node {
         font-size: 0.75rem;
         padding: 10px;
+        margin: 2px 0;
     }
 
     .socket {
-        width: 20px;
-        height: 20px;
+        width: 25px;
+        height: 25px;
     }
+
+    /* Bigger touch targets */
 }
