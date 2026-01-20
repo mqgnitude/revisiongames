@@ -36,17 +36,106 @@ const Main = {
         el.value = "";
 
         switch (type) {
-            case 'eng_macbeth':
-                el.value = "Macbeth's Guilt | Will all great Neptune's ocean wash this blood clean from my hand?\nAmbition | To be, or not to be, that is the question.\nMetaphor | It is the east, and Juliet is the sun.";
+            case 'geo_p2_rapid':
+                el.value = `
+Hydraulic Action | Air compressed in cracks expands explosively, blasting rock apart.
+Abrasion | Rocks carried by water scour away the riverbed or coastline (sandpaper effect).
+Attrition | Rocks collide with each other, becoming smoother and smaller.
+Solution (Corrosion) | Chemical reaction where water dissolves minerals (e.g., calcium carbonate in limestone).
+Discordant Coastline | Rock bands run perpendicular to the coast (forms Headlands and Bays).
+Concordant Coastline | Rock bands run parallel to the coast (forms Coves like Lulworth Cove).
+Constructive Wave | Low frequency, strong swash, weak backwash (builds beaches).
+Destructive Wave | High frequency, weak swash, strong backwash (erodes beaches).
+Igneous Rock | Volcanic, impermeable, resistant (e.g., Granite in Dartmoor).
+Sedimentary Rock | Layered, permeable/porous (e.g., Chalk in The Weald, Carboniferous Limestone).
+Metamorphic Rock | Changed by heat/pressure, resistant (e.g., Slate in Snowdonia).
+Tees-Exe Line | Imaginary line dividing UK into upland (North/West) and lowland (South/East).
+Thalweg | The line of fastest flow in a river channel (usually outside of a bend).
+Lag Time | The delay between peak rainfall and peak discharge on a hydrograph.
+Impermeable Geology | Rocks (Granite/Clay) that do not allow water to soak in (high surface runoff).
+Permeable Geology | Rocks (Chalk/Limestone) that allow water to soak in (low surface runoff).
+Urbanisation | The increase in the proportion of people living in towns and cities.
+Suburbanisation | The movement of people from the inner city to the outer edges (suburbs).
+Counter-urbanisation | The movement of people from cities to rural areas (for better quality of life).
+Re-urbanisation | The movement of people back into city centres (gentrification/regeneration).
+Site | The actual ground on which a settlement is built (e.g., wet point, dry point).
+Situation | The location of a settlement in relation to the surrounding area (e.g., near roads).
+Chloropleth Map | A map that uses shading/colours to show data density (darker = higher value).
+Stratified Sampling | Collecting data from different groups in proportion to their size in the population.
+Systematic Sampling | Collecting data at regular intervals (e.g., every 5th person).
+Random Sampling | Collecting data with no set system (e.g., random number generator).
+                `.trim();
                 break;
-            case 'eng_aic':
-                el.value = "Social Responsibility | We are members of one body. We are responsible for each other.\nCapitalism vs Socialism | A man has to make his own way—has to look after himself.";
+            case 'geo_p2_long':
+                el.value = `
+Formation of a Corrie (Cirque) |  Snow accumulates in a north-facing hollow. Nivation (freeze-thaw) deepens the hollow. Plucking steepens the back wall as ice pulls rocks away. Abrasion deepens the basin (sandpaper effect). Rotational slip moves the ice out, forming a rock lip at the front. When ice melts, a tarn (lake) remains.
+
+Formation of a Waterfall | 
+
+[Image of waterfall formation]
+ River flows over a band of hard rock (e.g., Whin Sill) overlying soft rock (e.g., Limestone). Soft rock erodes faster via hydraulic action and abrasion, creating a plunge pool. Splashback undercuts the hard rock. The overhanging hard rock eventually collapses. The process repeats, and the waterfall retreats upstream, leaving a gorge.
+
+Formation of a Spit | 
+
+[Image of spit formation geography]
+ Prevailing wind drives Longshore Drift (LSD) moving sediment in a zig-zag pattern along the coast. At a turn in the coastline (e.g., river mouth), sediment is deposited due to energy loss. The ridge extends into the sea. A recurved end forms due to secondary wind directions. A salt marsh forms behind the spit in the sheltered, low-energy zone.
+
+Factors Affecting Flood Risk | 1. Geology: Impermeable rock (granite/clay) prevents infiltration, increasing surface runoff and shortening lag time. 2. Land Use: Urbanisation creates impermeable concrete surfaces; deforestation removes trees that intercept rainfall. 3. Relief: Steep slopes cause rapid water flow into channels. 4. Weather: Heavy antecedent rainfall saturates soil, preventing further infiltration.
+
+Formation of Oxbow Lake | 
+
+[Image of oxbow lake formation]
+ On a meander, water flows fastest on the outside bend (erosion/hydraulic action) forming a river cliff, and slowest on the inner bend (deposition) forming a slip-off slope. The neck of the meander narrows over time. During a flood, the river cuts through the neck to take the straightest course. Deposition seals off the old bend, leaving an oxbow lake.
+
+Human Impact on Landscapes (Hard Engineering) | Sea Walls reflect wave energy but are expensive and ugly. Groynes trap sediment from LSD to build beaches (natural defence), but starve coastline further down-drift (terminal groyne syndrome). Rip Rap (Rock Armour) dissipates wave energy and is cheap, but rocks can be displaced.
+
+Human Impact on Landscapes (Soft Engineering) | Beach Nourishment involves adding sand to widen beaches; looks natural but requires constant maintenance. Managed Retreat allows the sea to flood low-value land to form salt marshes (natural buffers); cheap but landowners lose land.
+                `.trim();
                 break;
-            case 'eng_jekyll':
-                el.value = "Duality | Man is not truly one, but truly two.\nSecrecy | The moment I choose, I can be rid of Mr. Hyde.";
+
+            case 'eng_thesis':
+                el.value = `
+(Paste your Model Theses here in the next step...)
+                `.trim();
+                break;
+            case 'eng_high_level':
+                el.value = `
+Macbeth: Hamartia | Macbeth's downfall is not caused by fate, but by his 'vaulting ambition' which disrupts the Great Chain of Being.
+Macbeth: Cyclical Violence | Shakespeare presents violence not as a tool for order, but as a pathogen; 'blood will have blood' suggests violence begets only more violence.
+Macbeth: Gender | Lady Macbeth views femininity as an obstacle to power ('unsex me here'), conflating masculinity with aggression and cruelty.
+Macbeth: Equivocation | The Witches' paradoxes ('fair is foul') mirror the moral confusion of Macbeth’s Scotland, where values are inverted.
+Macbeth: Kingship | Duncan represents the divine, rightful King (order/growth), while Macbeth represents the tyrant (chaos/sterility).
+Macbeth: Nihilism | By Act 5, Macbeth's realization that life 'signifies nothing' is the ultimate punishment for destroying the religious order of his world.
+ACC: Malthusian Capitalism | Scrooge functions as a mouthpiece for Malthus, viewing the poor as statistical 'surplus' rather than human beings.
+ACC: Ignorance and Want | Dickens personifies these societal ills to argue that poverty is not a natural occurrence but a result of ruling-class neglect.
+ACC: The Supernatural | Unlike the malevolent witches in Macbeth, the Ghosts in ACC are catalysts for benevolent social transformation.
+ACC: Redemption | Scrooge's transformation is not merely personal; it is an allegory for the potential moral awakening of the Victorian wealthy class.
+ACC: Sabbatarianism | Dickens criticizes the rigid religious observance that restricts the poor (bakers closing on Sundays), advocating for practical charity over performative piety.
+ACC: The Fezziwigs | Fezziwig represents 'paternalism'—the idea that employers have a moral duty to care for the wellbeing of their employees.
+ACC: Cyclical Time | The Ghosts disrupt linear time to show Scrooge that the past, present, and future are interconnected; his past trauma shapes his present cruelty.
+                `.trim();
+                break;
+            case 'eng_quotes':
+                el.value = `
+Macbeth: Witches | "Fair is foul, and foul is fair." (Paradox/Equivocation)
+Macbeth: Ambition | "Stars, hide your fires; let not light see my black and deep desires." (Celestial imagery/Guilt)
+Macbeth: Guilt | "Will all great Neptune’s ocean wash this blood clean from my hand?" (Hyperbole/Regret)
+Lady Macbeth: Power | "Unsex me here... fill me from the crown to the toe top-full of direst cruelty." (Imperative/Gender)
+Lady Macbeth: Manipulation | "Look like the innocent flower, but be the serpent under’t." (Biblical allusion/Deception)
+Macbeth: Nihilism | "It is a tale told by an idiot, full of sound and fury, signifying nothing." (Metaphor/Despair)
+Macbeth: Violence | "Blood will have blood." (Repetition/Cyclical violence)
+ACC: Marley | "I wear the chain I forged in life." (Metaphor/Responsibility)
+ACC: Scrooge (Start) | "Solitary as an oyster." (Simile/Isolation/Potential for pearl)
+ACC: Scrooge (Malthus) | "If they would rather die, they had better do it, and decrease the surplus population." (Malthusian economic theory)
+ACC: Fred | "I have always thought of Christmas time... as a good time; a kind, forgiving, charitable, pleasant time." (Juxtaposition to Scrooge)
+ACC: Ghost of Present | "This boy is Ignorance. This girl is Want. Beware them both... but most of all beware this boy." (Allegory/Social Warning)
+ACC: Scrooge (End) | "I am as light as a feather, I am as happy as an angel." (Simile/Religious redemption)
+ACC: Tiny Tim | "God bless us, everyone!" (Religious blessing/Inclusivity)
+                `.trim();
                 break;
             case 'chem_c2':
                 el.value = `
+        
 Rate of Reaction | Change in quantity of reactant or product over time.
 Activation Energy | The minimum amount of energy that particles must have to react.
 Collision Theory | Particles must collide with sufficient energy to react.
@@ -147,13 +236,7 @@ Haber Conditions | 450C, 200atm, Iron Catalyst.
                 el.value = "Mitochondria | Where aerobic respiration happens.\nRibosome | Where protein synthesis happens.\nEukaryotic | Cells with a nucleus.";
                 break;
             case 'phys_p1':
-                el.value = "Kinetic Energy | 0.5 * mass * speed^2\nGravitational Potential | mass * gravity * height";
-                break;
-            case 'geo_hazards':
-                el.value = "Destructive Margin | Plates move towards each other.\nConstructive Margin | Plates move apart.";
-                break;
-            case 'hist_germany':
-                el.value = "Article 48 | Allowed the President to rule by decree in an emergency.\nTreaty of Versailles | Signed 1919, blamed Germany for WWI.";
+                el.value = "Kinetic Energy | 0.5 * mass * speed^2\nGravitational Potential | mass * gravity * height"
                 break;
             case 'cs_algo':
                 el.value = `
