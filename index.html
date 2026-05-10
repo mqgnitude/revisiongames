@@ -66,6 +66,12 @@
                     <p>Connect terms, MOBILE FRIENDLY</p>
                     <span class="tag">MATCHING / MOBILE</span>
                 </button>
+
+                <button id="card-typer" class="game-card" onclick="Main.selectMode('typer')">
+                    <h3>SPEED TYPER</h3>
+                    <p>Type your notes. Live WPM. Pauses don't count.</p>
+                    <span class="tag">TYPING / WPM</span>
+                </button>
             </div>
         </div>
 
@@ -77,6 +83,14 @@
                 <option value="press">Hydraulic Press</option>
                 <option value="minecraft">Minecraft Parkour</option>
             </select>
+        </div>
+
+        <div class="hub-section" id="typer-options" style="display:none; margin-top: 15px;">
+            <label>3. TYPER OPTIONS</label>
+            <label class="toggle-row">
+                <input type="checkbox" id="typer-strip-punct">
+                <span>Remove punctuation from text</span>
+            </label>
         </div>
 
         <button class="start-btn" onclick="Main.initSession()">START</button>
@@ -119,12 +133,74 @@
             <div class="patch-instructions">DRAG TO CONNECT</div>
         </div>
 
+        <!-- SPEED TYPER GAME -->
+        <div id="game-typer" class="game-layer hidden">
+
+            <!-- Live stats bar -->
+            <div class="typer-stats-bar">
+                <div class="typer-stat">
+                    <span class="typer-stat-label">WPM</span>
+                    <span class="typer-stat-value" id="typer-wpm">0</span>
+                </div>
+                <div class="typer-stat">
+                    <span class="typer-stat-label">ACC</span>
+                    <span class="typer-stat-value" id="typer-acc">100%</span>
+                </div>
+                <div class="typer-stat">
+                    <span class="typer-stat-label">TIME</span>
+                    <span class="typer-stat-value" id="typer-time">0.0s</span>
+                </div>
+            </div>
+
+            <!-- Progress bar -->
+            <div class="typer-progress-track">
+                <div class="typer-progress-fill" id="typer-progress"></div>
+            </div>
+
+            <!-- Typing arena -->
+            <div id="typer-arena">
+                <div id="typer-display" class="typer-display"></div>
+                <!-- Hidden input captures keystrokes -->
+                <input id="typer-input" class="typer-hidden-input" autocomplete="off"
+                    autocorrect="off" autocapitalize="off" spellcheck="false"
+                    placeholder="" aria-label="Typing input" />
+                <p class="typer-hint">Click the text above or press any key to focus &bull; Backspace to correct &bull; Pauses &gt;2s don't count against WPM</p>
+            </div>
+
+            <!-- Results panel -->
+            <div id="typer-results" class="typer-results hidden">
+                <h2 class="typer-results-title">SESSION COMPLETE</h2>
+                <div class="typer-results-grid">
+                    <div class="typer-res-card">
+                        <span class="typer-res-label">WPM</span>
+                        <span class="typer-res-val" id="res-wpm">—</span>
+                    </div>
+                    <div class="typer-res-card">
+                        <span class="typer-res-label">ACCURACY</span>
+                        <span class="typer-res-val" id="res-acc">—</span>
+                    </div>
+                    <div class="typer-res-card">
+                        <span class="typer-res-label">ACTIVE TIME</span>
+                        <span class="typer-res-val" id="res-time">—</span>
+                    </div>
+                    <div class="typer-res-card highlight">
+                        <span class="typer-res-label">POINTS EARNED</span>
+                        <span class="typer-res-val" id="res-pts">—</span>
+                    </div>
+                </div>
+                <button class="start-btn" style="max-width:300px; margin:0 auto; display:block;"
+                    onclick="Main.returnToHub()">BACK TO MENU</button>
+            </div>
+
+        </div>
+
     </div>
 
     <script src="js/audio.js"></script>
     <script src="js/games/glitch.js"></script>
     <script src="js/games/stim.js"></script>
     <script src="js/games/patch.js"></script>
+    <script src="js/games/typer.js"></script>
     <script src="js/main.js"></script>
 </body>
 

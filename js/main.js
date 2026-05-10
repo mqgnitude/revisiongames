@@ -331,10 +331,16 @@ Python: Random | import random; num = random.randint(1, 10)
         document.getElementById('card-' + mode).classList.add('selected');
 
         const visualSelector = document.getElementById('visual-selector');
+        const typerOptions   = document.getElementById('typer-options');
         if (mode === 'stim') {
             visualSelector.style.display = 'block';
+            typerOptions.style.display   = 'none';
+        } else if (mode === 'typer') {
+            visualSelector.style.display = 'none';
+            typerOptions.style.display   = 'block';
         } else {
             visualSelector.style.display = 'none';
+            typerOptions.style.display   = 'none';
         }
     },
 
@@ -347,10 +353,12 @@ Python: Random | import random; num = random.randint(1, 10)
 
         this.queue = input.split('\n').filter(l => l.trim().length > 0);
 
-        // Shuffle
-        for (let i = this.queue.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [this.queue[i], this.queue[j]] = [this.queue[j], this.queue[i]];
+        // Shuffle (skip for typer — preserve reading order)
+        if (this.mode !== 'typer') {
+            for (let i = this.queue.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [this.queue[i], this.queue[j]] = [this.queue[j], this.queue[i]];
+            }
         }
 
         this.levelIndex = 0;
@@ -361,6 +369,9 @@ Python: Random | import random; num = random.randint(1, 10)
         // ROUTING
         if (this.mode === 'patch') {
             PatchGame.init(this.queue);
+        } else if (this.mode === 'typer') {
+            const stripPunct = document.getElementById('typer-strip-punct').checked;
+            TyperGame.init(this.queue, stripPunct);
         } else {
             this.startLevel();
         }
@@ -403,9 +414,10 @@ Python: Random | import random; num = random.randint(1, 10)
     },
 
     returnToHub: function () {
-        if (typeof GlitchGame !== 'undefined') GlitchGame.stop();
-        if (typeof StimGame !== 'undefined') StimGame.stop();
-        if (typeof PatchGame !== 'undefined') PatchGame.stop();
+        if (typeof GlitchGame  !== 'undefined') GlitchGame.stop();
+        if (typeof StimGame    !== 'undefined') StimGame.stop();
+        if (typeof PatchGame   !== 'undefined') PatchGame.stop();
+        if (typeof TyperGame   !== 'undefined') TyperGame.stop();
 
         document.getElementById('game-container').classList.add('hidden');
         document.getElementById('hub-screen').classList.remove('hidden');
@@ -421,6 +433,16 @@ document.addEventListener('keydown', (e) => {
 
     if (Main.mode === 'glitch') GlitchGame.handleInput(e);
     if (Main.mode === 'stim') StimGame.handleInput(e);
+
+    // Typer: re-focus hidden input on any key, handle backspace
+    if (Main.mode === 'typer') {
+        const inp = document.getElementById('typer-input');
+        if (inp && document.activeElement !== inp) inp.focus();
+        if (e.key === 'Backspace') {
+            e.preventDefault();
+            TyperGame.handleBackspace();
+        }
+    }
     // PatchGame handles its own mouse/touch events
 });
 

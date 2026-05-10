@@ -131,7 +131,7 @@ textarea:focus {
 /* GAME SELECTION CARDS */
 .game-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 15px;
 }
 
@@ -585,4 +585,234 @@ textarea:focus {
     }
 
     /* Bigger touch targets */
+}
+
+/* --- TOGGLE ROW (hub option) --- */
+.toggle-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ccc;
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-weight: normal;
+    letter-spacing: 0;
+    user-select: none;
+}
+
+.toggle-row input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--accent-blue);
+    cursor: pointer;
+}
+
+/* --- GAME 4: SPEED TYPER --- */
+#game-typer {
+    background: #050505;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 30px 30px;
+    gap: 0;
+}
+
+/* Stats bar */
+.typer-stats-bar {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 18px;
+    justify-content: center;
+}
+
+.typer-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.typer-stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    color: #555;
+    text-transform: uppercase;
+}
+
+.typer-stat-value {
+    font-family: var(--font-mono);
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--accent-blue);
+    text-shadow: 0 0 12px rgba(0, 216, 255, 0.4);
+    transition: color 0.15s;
+    min-width: 70px;
+    text-align: center;
+}
+
+/* Progress track */
+.typer-progress-track {
+    width: 100%;
+    max-width: 900px;
+    height: 3px;
+    background: #1a1a1a;
+    border-radius: 3px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.typer-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent-blue);
+    box-shadow: 0 0 8px var(--accent-blue);
+    border-radius: 3px;
+    transition: width 0.1s linear;
+}
+
+/* Typing arena */
+#typer-arena {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.typer-display {
+    width: 100%;
+    max-width: 900px;
+    font-family: var(--font-mono);
+    font-size: 1.6rem;
+    line-height: 2;
+    letter-spacing: 0.02em;
+    color: #444;
+    white-space: pre-wrap;
+    word-break: break-all;
+    overflow: hidden;
+    max-height: 3 * 2 * 1.6rem; /* Show ~3 lines */
+    cursor: text;
+    padding: 10px 0;
+    user-select: none;
+}
+
+/* Character state colours */
+.tc-pending   { color: #555; }
+.tc-correct   { color: #e0e0e0; }
+.tc-incorrect { color: #ff3d5e; background: rgba(255, 61, 94, 0.12); border-radius: 2px; }
+
+/* Blinking cursor on the next character to type */
+.tc-cursor {
+    border-left: 2px solid var(--accent-blue);
+    margin-left: -1px;
+    animation: blink-cursor 0.9s step-end infinite;
+}
+
+@keyframes blink-cursor {
+    0%, 100% { border-left-color: var(--accent-blue); }
+    50%       { border-left-color: transparent; }
+}
+
+/* Hidden real input (positioned off-screen) */
+.typer-hidden-input {
+    position: fixed;
+    top: -9999px;
+    left: -9999px;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+    border: none;
+    background: transparent;
+    color: transparent;
+    caret-color: transparent;
+}
+
+.typer-hint {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: #333;
+    margin-top: 20px;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+/* Results panel */
+.typer-results {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.typer-results-title {
+    font-family: var(--font-mono);
+    font-size: 2rem;
+    color: var(--accent-blue);
+    letter-spacing: 5px;
+    text-shadow: 0 0 20px rgba(0, 216, 255, 0.4);
+}
+
+.typer-results-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    width: 100%;
+}
+
+.typer-res-card {
+    background: #111;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: border-color 0.2s;
+}
+
+.typer-res-card.highlight {
+    border-color: var(--accent-green);
+    background: rgba(0, 255, 65, 0.05);
+}
+
+.typer-res-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    color: #555;
+    text-transform: uppercase;
+}
+
+.typer-res-val {
+    font-family: var(--font-mono);
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+.typer-res-card.highlight .typer-res-val {
+    color: var(--accent-green);
+    text-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
+}
+
+/* Mobile tweaks for typer */
+@media (max-width: 768px) {
+    .typer-display {
+        font-size: 1.1rem;
+    }
+
+    .typer-results-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .typer-stats-bar {
+        gap: 20px;
+    }
+
+    .typer-stat-value {
+        font-size: 1.4rem;
+    }
 }
